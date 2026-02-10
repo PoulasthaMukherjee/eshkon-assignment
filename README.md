@@ -6,7 +6,7 @@ A modern Content Management System (CMS) prototype built with Next.js 15, featur
 
 - **Framework:** [Next.js 15](https://nextjs.org/) (App Router)
 - **Language:** [TypeScript](https://www.typescriptlang.org/)
-- **Database:** [SQLite](https://www.sqlite.org/) with [Prisma ORM](https://www.prisma.io/)
+- **Database:** [PostgreSQL](https://www.postgresql.org/) with [Prisma ORM](https://www.prisma.io/)
 - **Authentication:** [NextAuth.js v5 (Beta)](https://authjs.dev/)
 - **Styling:** [Tailwind CSS 4](https://tailwindcss.com/)
 - **Testing:** [Jest](https://jestjs.io/) & [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
