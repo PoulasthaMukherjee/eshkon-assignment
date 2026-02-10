@@ -1,6 +1,6 @@
 # Eshkon Assignment - CMS with RBAC
 
-A modern Content Management System (CMS) prototype built with Next.js 15, featuring Role-Based Access Control (RBAC), Prisma ORM with SQLite, and NextAuth.js for authentication.
+A modern Content Management System (CMS) prototype built with Next.js 15, featuring Role-Based Access Control (RBAC), Prisma ORM with PostgreSQL, and NextAuth.js for authentication.
 
 ## 🚀 Tech Stack
 
@@ -8,7 +8,7 @@ A modern Content Management System (CMS) prototype built with Next.js 15, featur
 - **Language:** [TypeScript](https://www.typescriptlang.org/)
 - **Database:** [PostgreSQL](https://www.postgresql.org/) with [Prisma ORM](https://www.prisma.io/)
 - **Authentication:** [NextAuth.js v5 (Beta)](https://authjs.dev/)
-- **Styling:** [Tailwind CSS 4](https://tailwindcss.com/)
+- **Styling:** [Tailwind CSS 3](https://tailwindcss.com/)
 - **Testing:** [Jest](https://jestjs.io/) & [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 
 ## ✨ Features
@@ -22,10 +22,10 @@ A modern Content Management System (CMS) prototype built with Next.js 15, featur
 ## 🔑 Role Hierarchy
 
 The application implements a hierarchical RBAC system:
-1. **VIEWER:** Can view published content.
-2. **EDITOR:** Can create and edit content (includes Viewer permissions).
-3. **ADMIN:** Full access to manage content and users (includes Editor permissions).
-4. **SUPER_ADMIN:** Absolute control over the system.
+1. **VIEWER:** Can view **Published** content only.
+2. **EDITOR:** Can **Create Drafts** and view their **own** drafts.
+3. **ADMIN:** Can **Publish** drafts to the public.
+4. **SUPER_ADMIN:** Can **Delete** content permanently.
 
 ## 🛠️ Getting Started
 
@@ -47,16 +47,17 @@ npm install
 Create a `.env` file in the root directory:
 
 ```env
-DATABASE_URL="file:./dev.db"
+# Connect to a PostgreSQL database (e.g. Neon, Supabase, or Local)
+POSTGRES_URL="postgresql://user:password@host:5432/dbname"
 AUTH_SECRET="your-secret-here" # Generate with `npx auth secret`
 ```
 
 ### 4. Database Setup
 
-Initialize the SQLite database, run migrations, and seed demo users:
+Initialize the PostgreSQL database, run migrations, and seed demo users:
 
 ```bash
-npx prisma migrate dev --name init
+npx prisma migrate dev
 npx prisma db seed
 ```
 
@@ -92,3 +93,9 @@ npm test
 - `lib/`: Core logic, including RBAC and Prisma client.
 - `prisma/`: Database schema, migrations, and seed scripts.
 - `__tests__/`: Test suites.
+
+## 🚀 Deployment
+
+The project is deployed on **Vercel** with a **Neon (Serverless Postgres)** database.
+
+- **Live Demo:** [https://eshkon-assignment-three.vercel.app](https://eshkon-assignment-three.vercel.app)
