@@ -3,6 +3,12 @@ import { prisma } from "@/lib/prisma";
 import { publishPage, deletePage } from "@/app/actions";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { Prisma } from "@prisma/client";
+
+// Define the shape of the data including the relation
+type PageWithAuthor = Prisma.PageGetPayload<{
+  include: { author: true }
+}>;
 
 export default async function Dashboard() {
   const session = await auth();
@@ -13,7 +19,6 @@ export default async function Dashboard() {
   // Logic: Viewers see nothing here. Editors see own posts. Admins see all.
   const where = role === 'EDITOR' ? { authorId: session.user.id } : {};
   
-  // Fetch data
   const pages = await prisma.page.findMany({ 
     where, 
     include: { author: true },
@@ -40,7 +45,7 @@ export default async function Dashboard() {
         </div>
 
         <div className="space-y-4">
-          {pages.map((page) => (
+          {pages.map((page: PageWithAuthor) => (
             <div key={page.id} className="bg-white p-6 rounded shadow border flex justify-between items-center">
               <div>
                 <h2 className="font-bold text-lg">{page.title}</h2>
