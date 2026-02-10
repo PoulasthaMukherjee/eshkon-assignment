@@ -1,4 +1,5 @@
 import { createPage } from "@/app/actions";
+import Link from "next/link";
 
 export default function NewPage() {
   return (
@@ -17,9 +18,18 @@ export default function NewPage() {
             <textarea name="content" required rows={6} className="w-full border p-2 rounded" placeholder="Enter content..." />
           </div>
 
-          <button type="submit" className="w-full bg-black text-white py-2 rounded hover:bg-gray-800">
-            Save Draft
-          </button>
+          <div className="flex gap-4 pt-4">
+            <Link 
+              href="/dashboard"
+              className="flex-1 py-2 text-center border border-gray-300 rounded hover:bg-gray-50 text-black"
+            >
+              Cancel
+            </Link>
+            
+            <button type="submit" className="flex-2 bg-black text-white py-2 rounded hover:bg-gray-800">
+              Save Draft
+            </button>
+          </div>
         </form>
       </div>
     </div>

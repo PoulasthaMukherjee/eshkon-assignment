@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Eshkon Assignment - CMS with RBAC
 
-## Getting Started
+A modern Content Management System (CMS) prototype built with Next.js 15, featuring Role-Based Access Control (RBAC), Prisma ORM with SQLite, and NextAuth.js for authentication.
 
-First, run the development server:
+## 🚀 Tech Stack
+
+- **Framework:** [Next.js 15](https://nextjs.org/) (App Router)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Database:** [SQLite](https://www.sqlite.org/) with [Prisma ORM](https://www.prisma.io/)
+- **Authentication:** [NextAuth.js v5 (Beta)](https://authjs.dev/)
+- **Styling:** [Tailwind CSS 4](https://tailwindcss.com/)
+- **Testing:** [Jest](https://jestjs.io/) & [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+
+## ✨ Features
+
+- **Authentication:** Secure login/logout using NextAuth.js.
+- **Role-Based Access Control (RBAC):** Hierarchical permission system.
+- **Content Management:** Create and view pages based on user roles.
+- **Database Seeding:** Pre-configured demo users for different roles.
+- **CI/CD:** GitHub Actions workflow for automated linting and testing.
+
+## 🔑 Role Hierarchy
+
+The application implements a hierarchical RBAC system:
+1. **VIEWER:** Can view published content.
+2. **EDITOR:** Can create and edit content (includes Viewer permissions).
+3. **ADMIN:** Full access to manage content and users (includes Editor permissions).
+4. **SUPER_ADMIN:** Absolute control over the system.
+
+## 🛠️ Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone <repository-url>
+cd eshkon-assignment
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Environment Variables
+
+Create a `.env` file in the root directory:
+
+```env
+DATABASE_URL="file:./dev.db"
+AUTH_SECRET="your-secret-here" # Generate with `npx auth secret`
+```
+
+### 4. Database Setup
+
+Initialize the SQLite database, run migrations, and seed demo users:
+
+```bash
+npx prisma migrate dev --name init
+npx prisma db seed
+```
+
+### 5. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 👥 Demo Accounts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+You can use the following accounts to test different roles (Password: `password123`):
 
-## Learn More
+- **Viewer:** `viewer@demo.com`
+- **Editor:** `editor@demo.com`
+- **Admin:** `admin@demo.com`
+- **Super Admin:** `super@demo.com`
 
-To learn more about Next.js, take a look at the following resources:
+## 🧪 Running Tests
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The project uses Jest for unit testing RBAC logic and component testing.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm test
+```
 
-## Deploy on Vercel
+## 📝 Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `app/`: Next.js App Router pages and API routes.
+- `components/`: Reusable UI components.
+- `lib/`: Core logic, including RBAC and Prisma client.
+- `prisma/`: Database schema, migrations, and seed scripts.
+- `__tests__/`: Test suites.
