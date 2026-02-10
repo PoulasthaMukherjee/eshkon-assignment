@@ -11,8 +11,8 @@ model User {
   id            String    @id @default(cuid())
   name          String?
   email         String    @unique
-  password      String    // Hashed password
-  role          String    @default("VIEWER") // VIEWER, EDITOR, ADMIN, SUPER_ADMIN
+  password      String
+  role          String    @default("VIEWER")
   createdAt     DateTime  @default(now())
   pages         Page[]
 }
@@ -22,7 +22,7 @@ model Page {
   slug        String   @unique
   title       String
   content     String
-  status      String   @default("DRAFT") // DRAFT, PUBLISHED
+  status      String   @default("DRAFT")
   authorId    String
   author      User     @relation(fields: [authorId], references: [id])
   updatedAt   DateTime @updatedAt
