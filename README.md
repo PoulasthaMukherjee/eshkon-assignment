@@ -23,16 +23,16 @@ A modern Content Management System (CMS) prototype built with Next.js 15, featur
 
 The application implements a hierarchical RBAC system:
 1. **VIEWER:** Can view **Published** content only.
-2. **EDITOR:** Can **Create Drafts** and view their **own** drafts.
-3. **ADMIN:** Can **Publish** drafts to the public.
-4. **SUPER_ADMIN:** Can **Delete** content permanently.
+2. **EDITOR:** Can **Create/Edit Drafts** and view their **own** drafts.
+3. **ADMIN:** Can **Create/Edit/Publish** drafts to the public.
+4. **SUPER_ADMIN:** Can **Create/Edit/Publish/Delete** content permanently.
 
 ## 🛠️ Getting Started
 
 ### 1. Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/PoulasthaMukherjee/eshkon-assignment.git
 cd eshkon-assignment
 ```
 
