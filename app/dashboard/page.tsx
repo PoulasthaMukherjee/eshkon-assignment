@@ -91,6 +91,15 @@ export default async function Dashboard() {
 
               {/* Action Buttons Section */}
               <div className="flex items-center gap-2 shrink-0">
+                {role !== 'VIEWER' && (
+                  <Link 
+                    href={`/dashboard/edit/${page.id}`} 
+                    className="text-sm bg-blue-600 text-white px-3 py-1.5 rounded hover:bg-blue-700 transition"
+                  >
+                    Edit
+                  </Link>
+                )}
+                
                 {['ADMIN', 'SUPER_ADMIN'].includes(role) && page.status !== 'PUBLISHED' && (
                   <form action={publishPage.bind(null, page.id)}>
                     <button className="text-sm bg-green-600 text-white px-3 py-1.5 rounded hover:bg-green-700 transition">
